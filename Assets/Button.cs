@@ -14,11 +14,6 @@ public class Button : MonoBehaviour {
 		buttonArray = GameObject.FindObjectsOfType<Button> ();
 	}
 
-	// Update is called once per frame
-	void Update () {
-
-	}
-
 	void OnMouseDown() {
 		foreach (Button thisButton in buttonArray) {
 			thisButton.GetComponent<SpriteRenderer> ().color = Color.black;

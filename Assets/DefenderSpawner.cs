@@ -6,7 +6,7 @@ public class DefenderSpawner : MonoBehaviour {
 
 	Camera mainCam;
 	GameObject defenderParent;
-	// Use this for initialization
+	
 	void Start () {
 		mainCam = Camera.main;
 		defenderParent = GameObject.Find ("Defenders");
@@ -15,16 +15,15 @@ public class DefenderSpawner : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 	void OnMouseDown() {
-		Vector2 rawPos = PixelsToWorldCoordinate ();
-		Vector2 roundedPos = SnapToGrid (rawPos);
-		GameObject spawnedDefender = Instantiate (Button.selectedDefender, roundedPos, Quaternion.identity);
-		spawnedDefender.transform.parent = defenderParent.transform;
-		print (SnapToGrid(PixelsToWorldCoordinate()));
+		if(Button.selectedDefender != null)
+		{
+			Vector2 rawPos = PixelsToWorldCoordinate ();
+			Vector2 roundedPos = SnapToGrid (rawPos);
+			GameObject spawnedDefender = Instantiate (Button.selectedDefender, roundedPos, Quaternion.identity);
+			spawnedDefender.transform.parent = defenderParent.transform;
+		}
+		//print (SnapToGrid(PixelsToWorldCoordinate()));
 	}
 	Vector2 PixelsToWorldCoordinate(){
 		float mouseX = Input.mousePosition.x;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManagerScript : MonoBehaviour {
 
@@ -12,12 +13,32 @@ public class MusicManagerScript : MonoBehaviour {
 		DontDestroyOnLoad (gameObject);
 	}
 
-	// Use this for initialization
-	void Start () {
-		audioSauce = GetComponent<AudioSource>();
-
+	void OnEnable()
+	{
+		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 
+	void Start () {
+		audioSauce = GetComponent<AudioSource>();
+	}
+
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		Scene currentScene = SceneManager.GetActiveScene();
+		int currentBuildIndex = currentScene.buildIndex;
+		Debug.Log(currentBuildIndex);
+
+		AudioClip thisLevelsMusic = levelMusicArray [currentBuildIndex];
+
+		Debug.Log ("Playing level: " + thisLevelsMusic);
+		if (thisLevelsMusic) {
+			audioSauce.clip = thisLevelsMusic;
+			audioSauce.loop = true;
+			audioSauce.Play ();
+		}
+	}
+	
+	/* 
 	void OnLevelWasLoaded(int level) {
 
 		AudioClip thisLevelsMusic = levelMusicArray [level];
@@ -29,6 +50,7 @@ public class MusicManagerScript : MonoBehaviour {
 			audioSauce.Play ();
 		}
 	}
+	*/
 	
 	// Update is called once per frame
 	void Update () {
