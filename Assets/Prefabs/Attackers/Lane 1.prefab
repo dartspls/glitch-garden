@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4358134156365546}
+  - component: {fileID: 114361818411692290}
   m_Layer: 0
   m_Name: Lane 1
   m_TagString: Untagged
@@ -39,3 +40,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114361818411692290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1607655312412330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5582ac2a66df34ef6a714aed8084a453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 1940268229955968, guid: 3a54f905e03b24ae9812249b128a1214, type: 2}
+  - {fileID: 1937217264337650, guid: 2682fd66bca4a4aa7bb488ae45fa15ee, type: 2}
+  spawnDelay: 5

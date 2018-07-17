@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent (typeof(Rigidbody2D))]
 public class AttackerScript : MonoBehaviour {
 
-	private float currentSpeed;
+	private float currentSpeed; 
+	public float seenEverySeconds;
 
 	private GameObject curTarget;
 	private Animator m_Anim;
