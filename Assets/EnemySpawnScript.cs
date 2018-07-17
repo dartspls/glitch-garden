@@ -5,27 +5,47 @@ using UnityEngine;
 public class EnemySpawnScript : MonoBehaviour 
 {
 	public GameObject[] enemyPrefabs;
-	int tempInt = 0;
 
-	private float lastSpawn = 0;
-	public float spawnDelay = 5f;
 	
+
+	private void Start()
+	{
+		
+	}
+
 	private void Update()
 	{
-		if(lastSpawn < Time.time)
+		int monsterToSpawn = Random.Range(0, enemyPrefabs.Length);
+		if(IsTimetoSpawn(enemyPrefabs[monsterToSpawn]))
 		{
-			lastSpawn = Time.time + spawnDelay;
-			Spawn();
-			Debug.Log("spawn call");
+			Spawn(enemyPrefabs[monsterToSpawn]);
 		}
 	}
 
-	void Spawn()
+	void Spawn(GameObject attackerPrefab)
 	{
-        Debug.Log("start of spawn");
-		int monsterID = Random.Range(0, 2);
-		GameObject spawnedMonster = Instantiate(enemyPrefabs[monsterID], transform.position, Quaternion.identity);
+		Instantiate(attackerPrefab, transform.position, Quaternion.identity);
+	}
 
-        Debug.Log("end of spawn");
+	private bool IsTimetoSpawn(GameObject attacker)
+	{
+		float spawnDelay = attacker.GetComponent<AttackerScript>().seenEverySeconds;
+		float spawnsPerSec = 1 / spawnDelay;
+
+		if(Time.deltaTime > spawnDelay)
+		{
+			Debug.LogWarning("Spawn rate capped by frame rate");
+		}
+
+		float threshold = spawnsPerSec * Time.deltaTime / 5;
+
+		if(Random.value < threshold)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }

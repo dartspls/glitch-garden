@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8b7c8a2896f443e840d075bbfa3a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seenEverySeconds: 0
+  seenEverySeconds: 10
 --- !u!114 &114762738344404266
 MonoBehaviour:
   m_ObjectHideFlags: 1
